@@ -1,6 +1,6 @@
 [project]
 name = "tinybus"
-version = "0.2.0"
+version = "0.2.1"
 description = "A modern, minimal event bus for python inspired by Eclipse Vert.x"
 readme = "README.md"
 license = "MIT"
