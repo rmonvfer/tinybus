@@ -1,0 +1,58 @@
+[project]
+name = "tinybus"
+version = "0.2.0"
+description = "A modern, minimal event bus for python inspired by Eclipse Vert.x"
+readme = "README.md"
+license = "MIT"
+
+authors = [
+    {name = "Ramón Vila Ferreres", email = "ramonvilafer@proton.me"},
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.10.3",
+]
+
+[tool.pdm.build]
+includes = [
+    "src/tinybus",
+]
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.4",
+    "pytest-asyncio>=0.24.0",
+    "pytest-cov>=6.0.0",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "strict"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = "--cov=src/tinybus --cov-report=term-missing"
+markers = [
+    "model: marks test classes that are actually models, not tests",
+]
+filterwarnings = [
+    "ignore::pytest.PytestCollectionWarning"
+]
+
+[tool.coverage.run]
+source = ["src/tinybus"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "pass",
+    "raise ImportError",
+]
